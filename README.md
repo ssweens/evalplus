@@ -10,6 +10,7 @@
 </p>
 
 <p align="center">
+    <a href="#-common-usage">⚡Common Usage</a> •
     <a href="#-about">📙About</a> •
     <a href="#-quick-start">🔥Quick Start</a> •
     <a href="#-llm-backends">🚀LLM Backends</a> •
@@ -17,6 +18,15 @@
     <a href="#-citation">📜Citation</a> •
     <a href="#-acknowledgement">🙏Acknowledgement</a>
 </p>
+
+## ⚡ Common Usage
+
+```bash
+evalplus.evaluate --model "Nanbeige/Nanbeige4.1-3B-IQ4_XS" --mini \
+    --dataset humaneval \
+    --base-url http://localhost:9999/v1 \
+    --backend openai --greedy --limit 10
+```
 
 ## 📢 News
 

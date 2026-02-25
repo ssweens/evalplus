@@ -139,6 +139,7 @@ def evaluate(
     output_file: Optional[str] = None,
     gguf_file: Optional[str] = None,
     num_ctx: Optional[int] = None,
+    limit: Optional[int] = None,
     **model_kwargs,
 ):
     if model_kwargs:
@@ -151,6 +152,7 @@ def evaluate(
             dataset=dataset,
             gguf_file=gguf_file,
             num_ctx=num_ctx,
+            limit=limit,
             **model_kwargs,
         )
     assert samples is not None, "No samples provided"
@@ -195,6 +197,12 @@ def evaluate(
                 dataset_hash,
                 MBPP_OUTPUT_NOT_NONE_TASKS,
             )
+
+        if limit is not None:
+            task_ids = list(problems.keys())[:limit]
+            cprint(f"Limiting to {limit} problem(s) (out of {len(problems)})", "yellow")
+            problems = {tid: problems[tid] for tid in task_ids}
+            expected_output = {tid: expected_output[tid] for tid in task_ids}
 
         results = {
             "date": datetime.now().strftime("%Y-%m-%d %H:%M"),
